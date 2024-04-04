@@ -35,10 +35,18 @@
 
                 L.geoJSON(data.features, {
                     style: function (feature) {
+                        // part: 3
+                        const hectares = feature.properties.hectares;
+                        var fillOpacity = 0.5;
+                        if (hectares < 1 || hectares === null) {
+                            fillOpacity = 0;
+                        } else if (hectares > 1000) {
+                            fillOpacity = 1;
+                        }
                         var options = {
                             color: '#FF0000',
                             weight: 2,
-                            fillOpacity: 0.5
+                            fillOpacity
                         }
                         return options;
                     },
